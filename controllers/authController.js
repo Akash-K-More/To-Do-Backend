@@ -6,6 +6,12 @@ exports.register = async (req, res) => {
   const passwordHash = await bcrypt.hash(password, 10);
 
   try {
+    
+    if (User.findByEmail.length>0) {
+      res.status(409).json({ message: 'User already registered'});
+      return
+    }
+    
     const userId = await User.create(username, email, passwordHash);
     res.status(201).json({ message: 'User registered', userId });
   } catch (error) {
