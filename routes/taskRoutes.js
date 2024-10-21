@@ -3,7 +3,7 @@ const router = express.Router();
 const { addTask, getTasks } = require('../controllers/taskController');
 const validateUser = require('../middlewares/validateUser'); // Auth middleware
 
-router.post('/', validateUser, addTask);
+router.post('/add-task', validateUser, addTask);
 router.get('/', validateUser, getTasks);
 
 module.exports = router;
